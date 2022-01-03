@@ -71,22 +71,45 @@ export default {
     },
     // upload file
     async upload(file) {
-      const formData = new FormData()
+      let formData = new FormData()
       formData.append('avatar', this.selectedFile.item[0])
 
       // mengirim data ke server
       try {
-        const response = await this.$axios.post('/api/v1/avatars', formData, {
+        let response = await this.$axios.post('/api/v1/avatars', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         })
-        console.log(response.data.data.url)
+        console.log(response)
         this.$router.push({ path: '/register-success' })
       } catch (error) {
         console.log(error)
       }
     },
   },
+  // methods: {
+  //   onFileChange(e) {
+  //     const file = e.target.files[0]
+  //     this.url = URL.createObjectURL(file)
+  //     this.selectedFile = this.$refs.file.files
+  //   },
+  //   async upload(file) {
+  //     let formData = new FormData()
+
+  //     formData.append('avatar', this.selectedFile.item(0))
+  //     try {
+  //       let response = await this.$axios.post('api/v1/avatars', formData, {
+  //         headers: {
+  //           'Content-Type': 'multipart/form-data',
+  //         },
+  //       })
+  //       console.log(response)
+  //       this.$router.push({ path: '/register-success' })
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   },
+  // },
 }
 </script>
