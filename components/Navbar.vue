@@ -31,6 +31,7 @@
         >
       </li>
     </ul>
+    <!-- jika tidak login -->
     <ul class="flex ml-auto items-center mt-2" 
     v-if="!this.$store.state.auth.loggedIn"
     >
@@ -51,6 +52,8 @@
         </nuxt-link>
       </li>
     </ul>
+
+    <!-- jika login -->
     <div class="flex ml-auto" v-else>
       <div class="dropdown inline-block relative z-10">
         <button

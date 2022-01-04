@@ -61,45 +61,20 @@ export default {
       selectedFile: undefined,
     }
   },
-  methods: {
-    // medeteksi jika ada file yang di pilih
-
-    onFileChange(e) {
-      const file = e.target.files[0]
-      this.url = URL.createObjectURL(file)
-      this.selectedFile = this.$refs.file.files
-    },
-    // upload file
-    async upload(file) {
-      let formData = new FormData()
-      formData.append('avatar', this.selectedFile.item[0])
-
-      // mengirim data ke server
-      try {
-        let response = await this.$axios.post('/api/v1/avatars', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-        console.log(response)
-        this.$router.push({ path: '/register-success' })
-      } catch (error) {
-        console.log(error)
-      }
-    },
-  },
   // methods: {
+  //   // medeteksi jika ada file yang di pilih
+
   //   onFileChange(e) {
   //     const file = e.target.files[0]
   //     this.url = URL.createObjectURL(file)
   //     this.selectedFile = this.$refs.file.files
   //   },
+  //   // upload file
   //   async upload(file) {
   //     let formData = new FormData()
-
-  //     formData.append('avatar', this.selectedFile.item(0))
+  //     formData.append('avatar', this.selectedFile.item[0])
   //     try {
-  //       let response = await this.$axios.post('api/v1/avatars', formData, {
+  //       let response = await this.$axios.post('/api/v1/avatars', formData, {
   //         headers: {
   //           'Content-Type': 'multipart/form-data',
   //         },
@@ -111,5 +86,28 @@ export default {
   //     }
   //   },
   // },
+  methods: {
+    onFileChange(e) {
+      const file = e.target.files[0]
+      this.url = URL.createObjectURL(file)
+      this.selectedFile = this.$refs.file.files
+    },
+    async upload(file) {
+      let formData = new FormData()
+
+      formData.append('avatar', this.selectedFile.item(0))
+      try {
+        let response = await this.$axios.post('api/v1/avatars', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        console.log(response)
+        this.$router.push({ path: '/register-success' })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
 }
 </script>
